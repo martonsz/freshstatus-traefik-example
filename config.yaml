@@ -1,0 +1,30 @@
+http:
+  routers:
+    wildcard:
+      service: freshstatus
+      rule: "Method(`GET`)"
+    wildcard-tls:
+      service: freshstatus
+      rule: "Method(`GET`)"
+      tls:
+        certResolver: letsEncrypt
+        domains:
+          # CHANGEME: Change this to your custom domain
+          - main: "CHANGEME.com"
+
+  services:
+    freshstatus:
+      loadBalancer:
+        passHostHeader: false
+        servers:
+          # CHANGE this to your freshstatus.io page
+          - url: https://CHANGEME.freshstatus.io
+
+log:
+  level: INFO
+  format: common
+  #format: json
+
+accessLog:
+  format: common
+  #format: json

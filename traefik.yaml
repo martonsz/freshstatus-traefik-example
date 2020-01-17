@@ -1,0 +1,19 @@
+entryPoints:
+  web:
+    address: :80
+  web-tls:
+    address: :443
+providers:
+  file:
+    filename: "/etc/traefik/config.yaml"
+
+certificatesResolvers:
+  letsEncrypt:
+    acme:
+      # CHANGEME: this to your email address
+      email: CHANGEME@email.com
+      # Uncomment next line to use the staging server
+      #caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      storage: acme.json
+      httpChallenge:
+        entryPoint: web
